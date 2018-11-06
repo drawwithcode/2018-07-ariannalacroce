@@ -1,11 +1,35 @@
+var capture;
+var x = 0;
+
 function preload(){
-  // put preload code here
 }
 
 function setup() {
-  // put setup code here
+  createCanvas(windowWidth,windowHeight);
+  pixelDensity(1);
+  capture = createCapture(VIDEO);
+  capture.size(320,480);
+    background(50);
+    frameRate(35);
+    background(130);
+
+    textAlign(CENTER);
+      textSize(20);
+      fill(255);
+      textFont('Chakra Petch');
+      text('Try to move your face in all directions', width/2,530);
+
 }
 
 function draw() {
-  // put drawing code here
+  capture.loadPixels();
+  var w = capture.width;
+  var h = capture.height;
+
+  copy(capture, w/2, 0, 1, h, x, 0, 1, h);
+  x = x+3;
+
+  if(x>width) {
+    x=0;
+  }
 }
